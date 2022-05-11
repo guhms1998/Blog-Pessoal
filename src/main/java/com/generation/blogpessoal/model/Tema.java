@@ -24,7 +24,6 @@ public class Tema{
 		@NotBlank(message = "O atributo Descrição é obrigatório e não pode conter espaços em branco")
 		private String descricao;
 		
-		
 		@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
 		@JsonIgnoreProperties("tema")
 		private List<Postagem> postagem;
@@ -45,7 +44,9 @@ public class Tema{
 			this.descricao = descricao;
 		}
 
-		
+		/**
+		 *  Métodos Get e Set para a Collection postagem
+		 */
 		public List<Postagem> getPostagem() {
 			return postagem;
 		}
