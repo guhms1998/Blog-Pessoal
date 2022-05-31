@@ -2,7 +2,7 @@ package com.generation.blogpessoal.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
+import javax.persistence.Entity;//Trablhamos com JPA.
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,48 +12,54 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity
-@Table(name = "tb_postagens") 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity//Create Table
+@Table(name = "tb_postagens") //Informar o nome da tabela dentro do banco de dados ou seja postgem
 public class Postagem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long id; 
-
-	@NotBlank(message = "O atributo título é Obrigatório e não pode utilizar espaços em branco!") 
-	@Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
-	private String titulo; 
-
-	@NotNull(message = "O atributo texto é Obrigatório!")
-	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 500 caracteres")
+	@Id // Primary Key (id)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//MySql gera a chave primaria = auto_increment.
+	private Long id ;
+	
+	@NotBlank (message = "O atributo titulo é obrigatorio") //Não permitir que tenha espaco em branco e se é nulo
+	@Size(min = 5, max = 100, message = "O atributo titulo deve conter no minimo 5 e maximo 100 caracteres!") //definir o tamanho da string
+	private String titulo;
+	
+	@NotNull (message = "O atributo texto é obrigatorio") //Não permitir que tenha espaco em branco e se é nulo
+	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no minimo 5 e maximo 100 caracteres!")
 	private String texto;
-
-	@UpdateTimestamp
+	
+	@UpdateTimestamp //Pega o relgoio do windows a hora do momento e grava no banco.
 	private LocalDateTime data;
-
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-
-	/**
-	 * Relacionamento com a classe Usuario
-	 * Não esqueça de criar os métodos getters e setters para o atributo usuario.
-	 */
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
-	/**
-	 * 
-	 * Os Métodos Get e Set obrigatoriamente devem ser criados para todos os atributos
-     * da Classe, inclusive os novos atributos que forem adicionados no decorrer do
-     * processo de Desenvolvimento.
-	 * 
-	 */	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -85,25 +91,4 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-
-	public Tema getTema() {
-		return this.tema;
-	}
-
-	public void setTema(Tema tema) {
-		this.tema = tema;
-	}
-
-	/**
-	 * Métodos Get e Set para o atributo usuario
-	 */
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 }
