@@ -20,19 +20,19 @@ public class SwaggerConfig {
 		
         return new OpenAPI()
 				.info(new Info()
-					.title("Projeto Blog Pessoal")
+					.title("Blog Pessoal Gustavo")
 					.description("Projeto Blog Pessoal - Generation Brasil")
 					.version("v0.0.1")
 				.license(new License()
 					.name("Generation Brasil")
 					.url("https://brazil.generation.org/"))
 				.contact(new Contact()
-					.name("Alexandre Barbosa")
-					.url("https://github.com/alebs10")
-					.email("alexandre2002.ab@gmail.com")))
+					.name("Gustavo Henrique")
+					.url("https://github.com/guhms1998")
+					.email("gustavohms1998@gmail.com")))
 				.externalDocs(new ExternalDocumentation()
 					.description("Github")
-					.url("https://github.com/alebs10/db_blogpessoal"));
+					.url("https://github.com/guhms1998/Blog-Pessoal"));
 	}
 
 	@Bean
